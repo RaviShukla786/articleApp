@@ -42,9 +42,9 @@ class ArticleBloc extends Bloc<ArticleEvent, ArticleState> {
     }
   }
 
-  void _onSearchArticles(SearchArticles event, Emitter emit) {
+   void _onSearchArticles(SearchArticles event, Emitter emit) {
     final results = _allArticles
-        .where((a) => a.title.toLowerCase().contains(event.query.toLowerCase()))
+        .where((a) => a.title.toLowerCase().contains(event.query.toLowerCase()) || a.body.toLowerCase().contains(event.query.toLowerCase()))
         .toList();
     emit(ArticleLoaded(results, _favorites));
   }
